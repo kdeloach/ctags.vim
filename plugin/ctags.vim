@@ -174,7 +174,7 @@ else
 endif
 
 let g:ctags_obligatory_args = '-n --sort=no -o -'
-let g:ctags_pattern="^\\(.\\{-}\\)\t.\\{-}\t\\(\\d\\+\\);\"\t.\\(\t\\(.\\+\\)\\)\\?.*"
+let g:ctags_pattern="^\\(.\\{-}\\)\t.\\{-}\t\\(\\d\\+\\);\"\t.\\%(\t\\(.\\+\\)\\)\\?.*"
 
 " This function builds an array of tag indices.  b:tags contains all
 " the tag names in the file, separated by newlines.  b:lines contains
@@ -243,7 +243,7 @@ else
 	    let one_tag = matchstr(ctags, "[^\n]*", offset)
 	    let tag_name = substitute(one_tag, g:ctags_pattern, '\1', '')
 	    let tag_line_num = substitute(one_tag, g:ctags_pattern, '\2', '')
-	    let tag_parent = substitute(one_tag, g:ctags_pattern, '\4', '')
+	    let tag_parent = substitute(one_tag, g:ctags_pattern, '\3', '')
 	    let b:lines = b:lines . strpart(tag_line_num.spaces, 0, b:length)
 	    let b:lines = b:lines . strpart(index.spaces, 0, b:length)
             let status_text = tag_parent . " " . tag_name
